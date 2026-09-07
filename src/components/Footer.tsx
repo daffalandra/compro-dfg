@@ -1,7 +1,9 @@
 import { AtSign, Mail, MapPin, Share2 } from "lucide-react";
-import { navLinks } from "../data/content";
+import { footer, navLinks } from "../data/content";
+import { pick, useLanguage } from "../i18n/LanguageContext";
 
 export default function Footer() {
+  const { lang } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -13,8 +15,7 @@ export default function Footer() {
               DFG
             </span>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-500">
-              Fine in detail, Good in use. AI data operations and quality
-              infrastructure for Southeast Asia.
+              {pick(lang, footer.blurb)}
             </p>
 
             <div className="mt-6 space-y-3 text-sm">
@@ -27,7 +28,7 @@ export default function Footer() {
               </a>
               <div className="flex items-center gap-2.5 text-zinc-500">
                 <MapPin className="h-4 w-4" strokeWidth={1.5} />
-                Jakarta, Indonesia · Southeast Asia
+                {pick(lang, footer.location)}
               </div>
             </div>
 
@@ -52,7 +53,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 md:justify-items-end">
             <div>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-600">
-                Navigate
+                {pick(lang, footer.navigateHeading)}
               </h4>
               <ul className="space-y-2.5">
                 {navLinks.map((link) => (
@@ -61,7 +62,7 @@ export default function Footer() {
                       href={link.href}
                       className="text-sm text-zinc-400 transition-colors hover:text-white"
                     >
-                      {link.label}
+                      {pick(lang, link.label)}
                     </a>
                   </li>
                 ))}
@@ -69,7 +70,7 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-600">
-                Company
+                {pick(lang, footer.companyHeading)}
               </h4>
               <ul className="space-y-2.5">
                 <li>
@@ -77,7 +78,7 @@ export default function Footer() {
                     href="#top"
                     className="text-sm text-zinc-400 transition-colors hover:text-white"
                   >
-                    About
+                    {pick(lang, footer.about)}
                   </a>
                 </li>
                 <li>
@@ -85,7 +86,7 @@ export default function Footer() {
                     href="#engagement"
                     className="text-sm text-zinc-400 transition-colors hover:text-white"
                   >
-                    Pricing
+                    {pick(lang, footer.pricing)}
                   </a>
                 </li>
                 <li>
@@ -93,7 +94,7 @@ export default function Footer() {
                     href="#contact"
                     className="text-sm text-zinc-400 transition-colors hover:text-white"
                   >
-                    Contact
+                    {pick(lang, footer.contact)}
                   </a>
                 </li>
               </ul>
@@ -103,7 +104,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-3 pt-8 sm:flex-row">
           <p className="text-xs text-zinc-600">
-            &copy; {year} DFG (Data Fine &amp; Good). All rights reserved.
+            &copy; {year} DFG (Data Fine &amp; Good). {pick(lang, footer.rights)}
           </p>
           <p className="text-xs text-zinc-600">Fine in detail, Good in use.</p>
         </div>

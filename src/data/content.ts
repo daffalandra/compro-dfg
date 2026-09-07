@@ -5,53 +5,126 @@ import {
   Gauge,
   ScanSearch,
 } from "lucide-react";
+import type { Bilingual } from "../i18n/LanguageContext";
 
 /* ------------------------------------------------------------------ */
 /*  Navigation                                                         */
 /* ------------------------------------------------------------------ */
 
-export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Capabilities", href: "#capabilities" },
-  { label: "Workflow", href: "#workflow" },
-  { label: "Engagement", href: "#engagement" },
-  { label: "Contact", href: "#contact" },
+export const navLinks: { label: Bilingual; href: string }[] = [
+  { label: { en: "Services", id: "Layanan" }, href: "#services" },
+  { label: { en: "Capabilities", id: "Kapabilitas" }, href: "#capabilities" },
+  { label: { en: "Workflow", id: "Alur Kerja" }, href: "#workflow" },
+  { label: { en: "Engagement", id: "Kerja Sama" }, href: "#engagement" },
+  { label: { en: "Contact", id: "Kontak" }, href: "#contact" },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Hero                                                                */
+/* ------------------------------------------------------------------ */
+
+export const hero = {
+  badge: {
+    en: "AI Data Operations · Southeast Asia",
+    id: "Operasional Data AI · Asia Tenggara",
+  } as Bilingual,
+  headlineLine1: {
+    en: ["Fine", "in", "detail."],
+    id: ["Presisi", "dalam", "detail."],
+  },
+  headlineLine2: {
+    en: ["Good", "in", "use."],
+    id: ["Optimal", "saat", "digunakan."],
+  },
+  subhead: {
+    en: "DFG engineers the human judgment and delivery infrastructure that turns raw, inconsistent data into production-ready assets for AI systems across Southeast Asia.",
+    id: "DFG merancang penilaian manusia dan infrastruktur pengiriman yang mengubah data mentah dan tidak konsisten menjadi aset siap produksi untuk sistem AI di seluruh Asia Tenggara.",
+  } as Bilingual,
+  ctaPrimary: {
+    en: "Request Pilot Sprint",
+    id: "Ajukan Pilot Sprint",
+  } as Bilingual,
+  ctaSecondary: {
+    en: "Explore Capabilities",
+    id: "Jelajahi Kapabilitas",
+  } as Bilingual,
+};
 
 /* ------------------------------------------------------------------ */
 /*  Five Core Service Pillars                                          */
 /* ------------------------------------------------------------------ */
 
-export const servicePillars = [
+export const servicePillarsHeader = {
+  eyebrow: { en: "What We Do", id: "Layanan Kami" } as Bilingual,
+  heading: {
+    en: "Five pillars of data operations.",
+    id: "Lima pilar operasional data.",
+  } as Bilingual,
+  description: {
+    en: "One accountable partner spanning the full lifecycle — from raw data to AI-ready, governed output.",
+    id: "Satu mitra yang bertanggung jawab penuh atas seluruh siklus — dari data mentah hingga output siap-AI yang terkelola.",
+  } as Bilingual,
+};
+
+export const servicePillars: {
+  icon: typeof Gauge;
+  title: Bilingual;
+  description: Bilingual;
+}[] = [
   {
     icon: Gauge,
-    title: "AI Quality Assurance & Training",
-    description:
-      "LLM evaluation, RLHF, preference scoring, and hallucination review for production-grade model reliability.",
+    title: {
+      en: "AI Quality Assurance & Training",
+      id: "Jaminan Kualitas & Pelatihan AI",
+    },
+    description: {
+      en: "LLM evaluation, RLHF, preference scoring, and hallucination review for production-grade model reliability.",
+      id: "Evaluasi LLM, RLHF, penilaian preferensi, dan tinjauan halusinasi untuk keandalan model tingkat produksi.",
+    },
   },
   {
     icon: ScanSearch,
-    title: "Annotation & Search Refinement",
-    description:
-      "Multimodal vision and text labeling, search relevance, ranking, data cleaning, and deduplication.",
+    title: {
+      en: "Annotation & Search Refinement",
+      id: "Anotasi & Penyempurnaan Pencarian",
+    },
+    description: {
+      en: "Multimodal vision and text labeling, search relevance, ranking, data cleaning, and deduplication.",
+      id: "Pelabelan visual dan teks multimodal, relevansi pencarian, pemeringkatan, pembersihan data, dan deduplikasi.",
+    },
   },
   {
     icon: BarChart3,
-    title: "Data & Systems Analysis",
-    description:
-      "Workflow process mapping, data quality audits, and precise requirements documentation.",
+    title: {
+      en: "Data & Systems Analysis",
+      id: "Analisis Data & Sistem",
+    },
+    description: {
+      en: "Workflow process mapping, data quality audits, and precise requirements documentation.",
+      id: "Pemetaan proses kerja, audit kualitas data, dan dokumentasi kebutuhan yang presisi.",
+    },
   },
   {
     icon: ClipboardList,
-    title: "Technical Project & Ops Management",
-    description:
-      "SOP design, workforce operations, and transparent client delivery reporting.",
+    title: {
+      en: "Technical Project & Ops Management",
+      id: "Manajemen Proyek Teknis & Operasional",
+    },
+    description: {
+      en: "SOP design, workforce operations, and transparent client delivery reporting.",
+      id: "Perancangan SOP, operasional tenaga kerja, dan pelaporan pengiriman klien yang transparan.",
+    },
   },
   {
     icon: Database,
-    title: "Data Collection & Dataset Development",
-    description:
-      "Custom dataset curation across audio, image, and text — with defined train/test splits.",
+    title: {
+      en: "Data Collection & Dataset Development",
+      id: "Pengumpulan Data & Pengembangan Dataset",
+    },
+    description: {
+      en: "Custom dataset curation across audio, image, and text — with defined train/test splits.",
+      id: "Kurasi dataset khusus untuk audio, gambar, dan teks — lengkap dengan pembagian train/test yang terdefinisi.",
+    },
   },
 ];
 
@@ -59,49 +132,122 @@ export const servicePillars = [
 /*  Multimodal Capability Tabs                                         */
 /* ------------------------------------------------------------------ */
 
-export const capabilityTabs = [
+export const capabilitiesHeader = {
+  eyebrow: { en: "Capabilities", id: "Kapabilitas" } as Bilingual,
+  heading: {
+    en: "Full-spectrum multimodal coverage.",
+    id: "Cakupan multimodal secara menyeluruh.",
+  } as Bilingual,
+};
+
+export const capabilityTabs: {
+  id: string;
+  label: Bilingual;
+  heading: Bilingual;
+  items: Bilingual[];
+}[] = [
   {
     id: "vision",
-    label: "Vision",
-    heading: "Full-fidelity visual understanding.",
+    label: { en: "Vision", id: "Visual" },
+    heading: {
+      en: "Full-fidelity visual understanding.",
+      id: "Pemahaman visual dengan akurasi tinggi.",
+    },
     items: [
-      "Image & video annotation — bounding boxes, segmentation, classification",
-      "Multimodal vision-text labeling & image-caption alignment",
-      "Visual QA labeling and multimodal preference scoring",
-      "Visual content moderation review",
+      {
+        en: "Image & video annotation — bounding boxes, segmentation, classification",
+        id: "Anotasi gambar & video — bounding box, segmentasi, klasifikasi",
+      },
+      {
+        en: "Multimodal vision-text labeling & image-caption alignment",
+        id: "Pelabelan visual-teks multimodal & penyelarasan gambar-teks",
+      },
+      {
+        en: "Visual QA labeling and multimodal preference scoring",
+        id: "Pelabelan QA visual dan penilaian preferensi multimodal",
+      },
+      {
+        en: "Visual content moderation review",
+        id: "Tinjauan moderasi konten visual",
+      },
     ],
   },
   {
     id: "language",
-    label: "Language & Search",
-    heading: "Judgment-grade language evaluation.",
+    label: { en: "Language & Search", id: "Bahasa & Pencarian" },
+    heading: {
+      en: "Judgment-grade language evaluation.",
+      id: "Evaluasi bahasa dengan standar penilaian tinggi.",
+    },
     items: [
-      "LLM output evaluation & RLHF-style comparative judgment",
-      "Hallucination & factuality review",
-      "Search relevance & ranking evaluation",
-      "Text annotation, entity tagging, and intent classification",
+      {
+        en: "LLM output evaluation & RLHF-style comparative judgment",
+        id: "Evaluasi output LLM & penilaian komparatif gaya RLHF",
+      },
+      {
+        en: "Hallucination & factuality review",
+        id: "Tinjauan halusinasi & akurasi faktual",
+      },
+      {
+        en: "Search relevance & ranking evaluation",
+        id: "Evaluasi relevansi & pemeringkatan pencarian",
+      },
+      {
+        en: "Text annotation, entity tagging, and intent classification",
+        id: "Anotasi teks, penandaan entitas, dan klasifikasi intent",
+      },
     ],
   },
   {
     id: "documents",
-    label: "Documents & Audio",
-    heading: "Structured signal from unstructured sources.",
+    label: { en: "Documents & Audio", id: "Dokumen & Audio" },
+    heading: {
+      en: "Structured signal from unstructured sources.",
+      id: "Sinyal terstruktur dari sumber tidak terstruktur.",
+    },
     items: [
-      "Native SEA-language audio collection & transcription",
-      "OCR-assisted document parsing & field extraction",
-      "Requirements & process documentation",
-      "Audio/text quality labeling at scale",
+      {
+        en: "Native SEA-language audio collection & transcription",
+        id: "Pengumpulan & transkripsi audio bahasa lokal Asia Tenggara",
+      },
+      {
+        en: "OCR-assisted document parsing & field extraction",
+        id: "Penguraian dokumen & ekstraksi bidang berbantuan OCR",
+      },
+      {
+        en: "Requirements & process documentation",
+        id: "Dokumentasi kebutuhan & proses kerja",
+      },
+      {
+        en: "Audio/text quality labeling at scale",
+        id: "Pelabelan kualitas audio/teks dalam skala besar",
+      },
     ],
   },
   {
     id: "systems",
-    label: "Data & Systems",
-    heading: "Operational integrity, end to end.",
+    label: { en: "Data & Systems", id: "Data & Sistem" },
+    heading: {
+      en: "Operational integrity, end to end.",
+      id: "Integritas operasional dari ujung ke ujung.",
+    },
     items: [
-      "Data quality audits & completeness scoring",
-      "Dataset curation with defined train/test splits",
-      "Data cleaning & deduplication pipelines",
-      "SOP design & client delivery dashboarding",
+      {
+        en: "Data quality audits & completeness scoring",
+        id: "Audit kualitas data & penilaian kelengkapan",
+      },
+      {
+        en: "Dataset curation with defined train/test splits",
+        id: "Kurasi dataset dengan pembagian train/test yang terdefinisi",
+      },
+      {
+        en: "Data cleaning & deduplication pipelines",
+        id: "Pipeline pembersihan data & deduplikasi",
+      },
+      {
+        en: "SOP design & client delivery dashboarding",
+        id: "Perancangan SOP & dashboard pengiriman klien",
+      },
     ],
   },
 ];
@@ -110,36 +256,66 @@ export const capabilityTabs = [
 /*  Six-Step Operating Workflow                                        */
 /* ------------------------------------------------------------------ */
 
-export const workflowSteps = [
+export const workflowHeader = {
+  eyebrow: { en: "How We Operate", id: "Cara Kami Bekerja" } as Bilingual,
+  heading: {
+    en: "A disciplined six-step workflow.",
+    id: "Alur kerja enam langkah yang disiplin.",
+  } as Bilingual,
+};
+
+export const workflowSteps: {
+  number: string;
+  title: Bilingual;
+  description: Bilingual;
+}[] = [
   {
     number: "01",
-    title: "Define",
-    description: "Requirements gathering, guideline drafting, task scoping.",
+    title: { en: "Define", id: "Definisikan" },
+    description: {
+      en: "Requirements gathering, guideline drafting, task scoping.",
+      id: "Pengumpulan kebutuhan, penyusunan pedoman, penentuan lingkup tugas.",
+    },
   },
   {
     number: "02",
-    title: "Calibrate",
-    description: "Gold-set creation, annotator training, IAA baseline.",
+    title: { en: "Calibrate", id: "Kalibrasi" },
+    description: {
+      en: "Gold-set creation, annotator training, IAA baseline.",
+      id: "Pembuatan gold-set, pelatihan anotator, penetapan baseline IAA.",
+    },
   },
   {
     number: "03",
-    title: "Produce",
-    description: "Skill-tag-matched execution at agreed velocity.",
+    title: { en: "Produce", id: "Produksi" },
+    description: {
+      en: "Skill-tag-matched execution at agreed velocity.",
+      id: "Eksekusi sesuai skill-tag pada kecepatan yang disepakati.",
+    },
   },
   {
     number: "04",
-    title: "Review",
-    description: "Multi-layer QA sampling and label adjudication.",
+    title: { en: "Review", id: "Tinjau" },
+    description: {
+      en: "Multi-layer QA sampling and label adjudication.",
+      id: "Sampling QA berlapis dan ajudikasi label.",
+    },
   },
   {
     number: "05",
-    title: "Measure",
-    description: "IAA scoring, gold-benchmark accuracy, SLA tracking.",
+    title: { en: "Measure", id: "Ukur" },
+    description: {
+      en: "IAA scoring, gold-benchmark accuracy, SLA tracking.",
+      id: "Penilaian IAA, akurasi gold-benchmark, pelacakan SLA.",
+    },
   },
   {
     number: "06",
-    title: "Deliver",
-    description: "Structured export, dashboard sync, recap generation.",
+    title: { en: "Deliver", id: "Kirim" },
+    description: {
+      en: "Structured export, dashboard sync, recap generation.",
+      id: "Ekspor terstruktur, sinkronisasi dashboard, pembuatan rekap.",
+    },
   },
 ];
 
@@ -147,50 +323,111 @@ export const workflowSteps = [
 /*  Engagement Models                                                   */
 /* ------------------------------------------------------------------ */
 
-export const engagementModels = [
+export const engagementHeader = {
+  eyebrow: { en: "Engagement", id: "Kerja Sama" } as Bilingual,
+  heading: {
+    en: "Structured to match your scale.",
+    id: "Terstruktur sesuai skala kebutuhan Anda.",
+  } as Bilingual,
+  learnMore: { en: "Learn more", id: "Selengkapnya" } as Bilingual,
+};
+
+export const engagementModels: {
+  title: Bilingual;
+  volume: Bilingual;
+  description: Bilingual;
+  features: Bilingual[];
+  emphasized: boolean;
+  tag?: Bilingual;
+}[] = [
   {
-    title: "Pilot Sprint",
-    volume: "100 – 1,000 tasks",
-    description: "Low-risk entry point to prove the quality benchmark.",
+    title: { en: "Pilot Sprint", id: "Pilot Sprint" },
+    volume: { en: "100 – 1,000 tasks", id: "100 – 1.000 tugas" },
+    description: {
+      en: "Low-risk entry point to prove the quality benchmark.",
+      id: "Titik awal berisiko rendah untuk membuktikan standar kualitas.",
+    },
     features: [
-      "1–3 week delivery window",
-      "Fixed-scope quality report",
-      "No long-term commitment",
+      { en: "1–3 week delivery window", id: "Jangka waktu pengiriman 1–3 minggu" },
+      { en: "Fixed-scope quality report", id: "Laporan kualitas dengan lingkup tetap" },
+      { en: "No long-term commitment", id: "Tanpa komitmen jangka panjang" },
     ],
     emphasized: false,
   },
   {
-    title: "Project-Based",
-    volume: "1,000 – 50,000 tasks",
-    description: "Scoped delivery against clearly defined outcomes.",
+    title: { en: "Project-Based", id: "Berbasis Proyek" },
+    volume: { en: "1,000 – 50,000 tasks", id: "1.000 – 50.000 tugas" },
+    description: {
+      en: "Scoped delivery against clearly defined outcomes.",
+      id: "Pengiriman terlingkup sesuai hasil yang telah ditentukan dengan jelas.",
+    },
     features: [
-      "Complexity-tiered pricing",
-      "Dedicated QA pass",
-      "Milestone-based delivery",
+      { en: "Complexity-tiered pricing", id: "Harga bertingkat sesuai kompleksitas" },
+      { en: "Dedicated QA pass", id: "Proses QA khusus" },
+      { en: "Milestone-based delivery", id: "Pengiriman berbasis milestone" },
     ],
     emphasized: false,
   },
   {
-    title: "Managed Retainer",
-    volume: "Ongoing capacity",
-    description: "Reserved monthly capacity with SLA-backed delivery.",
+    title: { en: "Managed Retainer", id: "Retainer Terkelola" },
+    volume: { en: "Ongoing capacity", id: "Kapasitas berkelanjutan" },
+    description: {
+      en: "Reserved monthly capacity with SLA-backed delivery.",
+      id: "Kapasitas bulanan yang dicadangkan dengan pengiriman terjamin SLA.",
+    },
     features: [
-      "Continuous evaluation cycles",
-      "Priority queue access",
-      "Monthly automated recaps",
+      { en: "Continuous evaluation cycles", id: "Siklus evaluasi berkelanjutan" },
+      { en: "Priority queue access", id: "Akses antrean prioritas" },
+      { en: "Monthly automated recaps", id: "Rekap otomatis bulanan" },
     ],
     emphasized: true,
-    tag: "Most flexible",
+    tag: { en: "Most flexible", id: "Paling fleksibel" },
   },
   {
-    title: "Dedicated Pod",
-    volume: "50,000+ tasks",
-    description: "Ring-fenced team embedded into your operations.",
+    title: { en: "Dedicated Pod", id: "Dedicated Pod" },
+    volume: { en: "50,000+ tasks", id: "50.000+ tugas" },
+    description: {
+      en: "Ring-fenced team embedded into your operations.",
+      id: "Tim khusus yang terintegrasi langsung ke dalam operasional Anda.",
+    },
     features: [
-      "Dedicated QA lead",
-      "Custom system integration",
-      "Stood up within 5–10 days",
+      { en: "Dedicated QA lead", id: "QA lead khusus" },
+      { en: "Custom system integration", id: "Integrasi sistem khusus" },
+      { en: "Stood up within 5–10 days", id: "Siap beroperasi dalam 5–10 hari" },
     ],
     emphasized: false,
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Footer                                                              */
+/* ------------------------------------------------------------------ */
+
+export const footer = {
+  blurb: {
+    en: "Fine in detail, Good in use. AI data operations and quality infrastructure for Southeast Asia.",
+    id: "Fine in detail, Good in use. Operasional data AI dan infrastruktur kualitas untuk Asia Tenggara.",
+  } as Bilingual,
+  location: {
+    en: "Jakarta, Indonesia · Southeast Asia",
+    id: "Jakarta, Indonesia · Asia Tenggara",
+  } as Bilingual,
+  navigateHeading: { en: "Navigate", id: "Navigasi" } as Bilingual,
+  companyHeading: { en: "Company", id: "Perusahaan" } as Bilingual,
+  about: { en: "About", id: "Tentang" } as Bilingual,
+  pricing: { en: "Pricing", id: "Harga" } as Bilingual,
+  contact: { en: "Contact", id: "Kontak" } as Bilingual,
+  rights: {
+    en: "All rights reserved.",
+    id: "Seluruh hak dilindungi.",
+  } as Bilingual,
+};
+
+/* ------------------------------------------------------------------ */
+/*  Navbar                                                              */
+/* ------------------------------------------------------------------ */
+
+export const navCta = {
+  en: "Request Pilot",
+  id: "Ajukan Pilot",
+} as Bilingual;

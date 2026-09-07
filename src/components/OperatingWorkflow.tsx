@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { workflowSteps } from "../data/content";
+import { workflowHeader, workflowSteps } from "../data/content";
+import { pick, useLanguage } from "../i18n/LanguageContext";
 
 const easeApple = [0.16, 1, 0.3, 1] as const;
 
@@ -19,22 +20,32 @@ const itemVariants = {
   },
 };
 
+const lineVariants = {
+  hidden: { scaleX: 0 },
+  show: {
+    scaleX: 1,
+    transition: { duration: 1.1, ease: easeApple, delay: 0.1 },
+  },
+};
+
 export default function OperatingWorkflow() {
+  const { lang } = useLanguage();
+
   return (
     <section id="workflow" className="bg-white px-6 py-32 md:py-40">
       <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: easeApple }}
+          transition={{ duration: 0.7, ease: easeApple }}
           className="mb-16 max-w-2xl"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
-            How We Operate
+            {pick(lang, workflowHeader.eyebrow)}
           </span>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl">
-            A disciplined six-step workflow.
+            {pick(lang, workflowHeader.heading)}
           </h2>
         </motion.div>
 
@@ -45,15 +56,17 @@ export default function OperatingWorkflow() {
           viewport={{ once: true, margin: "-100px" }}
           className="relative grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6"
         >
-          {/* connecting line - desktop only */}
-          <div
+          {/* connecting line - desktop only, animated draw-on-scroll */}
+          <motion.div
+            variants={lineVariants}
+            style={{ transformOrigin: "left" }}
             aria-hidden
             className="pointer-events-none absolute top-6 hidden h-px w-full bg-zinc-200 lg:block"
           />
 
           {workflowSteps.map((step) => (
             <motion.div
-              key={step.number}
+              key={pick(lang, step.title)}
               variants={itemVariants}
               className="relative"
             >
@@ -61,10 +74,10 @@ export default function OperatingWorkflow() {
                 {step.number}
               </div>
               <h3 className="text-base font-semibold text-zinc-900">
-                {step.title}
+                {pick(lang, step.title)}
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
-                {step.description}
+                {pick(lang, step.description)}
               </p>
             </motion.div>
           ))}
