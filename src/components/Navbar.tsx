@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { navCta, navLinks } from "../data/content";
+import { footer, navCta, navLinks } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 
@@ -32,20 +32,26 @@ export default function Navbar() {
       <motion.div
         aria-hidden
         style={{ opacity: bgOpacity }}
-        className="absolute inset-0 border-b border-zinc-200/60 bg-white/70 backdrop-blur-xl"
+        className="absolute inset-0 border-b border-zinc-200/60 bg-white/75 backdrop-blur-xl"
       />
 
       <nav
         aria-label="Primary"
         className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
       >
+        {/* Logo */}
         <motion.a
           href="#top"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: easeApple }}
-          className="flex items-baseline gap-2"
+          className="flex items-center gap-2.5"
         >
+          <img
+            src={footer.logo}
+            alt="DFG logo"
+            className="h-8 w-8 object-contain"
+          />
           <span
             className={`text-lg font-semibold tracking-tight transition-colors duration-300 ${
               scrolled ? "text-zinc-900" : "text-zinc-900"
@@ -58,6 +64,7 @@ export default function Navbar() {
           </span>
         </motion.a>
 
+        {/* Desktop links */}
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
@@ -70,6 +77,7 @@ export default function Navbar() {
           ))}
         </div>
 
+        {/* Desktop right controls */}
         <div className="hidden items-center gap-4 md:flex">
           <LanguageToggle layoutId="active-lang-pill-desktop" />
           <a
@@ -80,6 +88,7 @@ export default function Navbar() {
           </a>
         </div>
 
+        {/* Mobile hamburger */}
         <button
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -94,6 +103,7 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

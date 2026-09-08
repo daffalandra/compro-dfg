@@ -18,6 +18,7 @@ export default function CapabilityTabs() {
       className="bg-black px-6 py-32 text-white md:py-40"
     >
       <div className="mx-auto max-w-6xl">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -43,9 +44,7 @@ export default function CapabilityTabs() {
                 type="button"
                 onClick={() => setActiveId(tab.id)}
                 className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${
-                  isActive
-                    ? "text-white"
-                    : "text-zinc-500 hover:text-zinc-300"
+                  isActive ? "text-white" : "text-zinc-500 hover:text-zinc-300"
                 }`}
               >
                 {isActive && (
@@ -63,6 +62,7 @@ export default function CapabilityTabs() {
 
         {/* Tab panel */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
+          {/* Left: feature list */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`${activeTab.id}-${lang}`}
@@ -90,19 +90,23 @@ export default function CapabilityTabs() {
             </motion.div>
           </AnimatePresence>
 
+          {/* Right: real capability image */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`${activeTab.id}-visual`}
-              initial={{ opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.3, ease: easeApple }}
-              className="flex aspect-[4/3] items-center justify-center rounded-3xl border border-zinc-800 bg-zinc-900"
-              aria-hidden
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.35, ease: easeApple }}
+              className="overflow-hidden rounded-3xl border border-zinc-800"
             >
-              <span className="text-xs uppercase tracking-widest text-zinc-600">
-                {pick(lang, activeTab.label)}
-              </span>
+              <img
+                src={activeTab.image}
+                alt={pick(lang, activeTab.label)}
+                loading="lazy"
+                className="h-full w-full object-cover"
+                style={{ aspectRatio: "4/3" }}
+              />
             </motion.div>
           </AnimatePresence>
         </div>

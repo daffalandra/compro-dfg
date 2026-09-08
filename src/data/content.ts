@@ -19,6 +19,11 @@ export const navLinks: { label: Bilingual; href: string }[] = [
   { label: { en: "Contact", id: "Kontak" }, href: "#contact" },
 ];
 
+export const navCta = {
+  en: "Request Pilot",
+  id: "Ajukan Pilot",
+} as Bilingual;
+
 /* ------------------------------------------------------------------ */
 /*  Hero                                                                */
 /* ------------------------------------------------------------------ */
@@ -48,6 +53,27 @@ export const hero = {
     en: "Explore Capabilities",
     id: "Jelajahi Kapabilitas",
   } as Bilingual,
+  image: "/assets/hero/hero.png",
+};
+
+/* ------------------------------------------------------------------ */
+/*  About                                                               */
+/* ------------------------------------------------------------------ */
+
+export const about = {
+  eyebrow: { en: "About DFG", id: "Tentang DFG" } as Bilingual,
+  heading: {
+    en: "Built for the operational reality of AI at scale.",
+    id: "Dibangun untuk realitas operasional AI di skala besar.",
+  } as Bilingual,
+  description: {
+    en: "We are a lean, specialist team based in Southeast Asia — combining rigorous quality governance, regional linguistic fluency, and systems-level automation to deliver data operations that enterprise AI teams can actually rely on.",
+    id: "Kami adalah tim spesialis yang ramping berbasis di Asia Tenggara — memadukan tata kelola kualitas yang ketat, kefasihan linguistik regional, dan otomasi di tingkat sistem untuk menghadirkan operasional data yang benar-benar dapat diandalkan oleh tim AI perusahaan.",
+  } as Bilingual,
+  stat1: { value: "5+", label: { en: "Service Pillars", id: "Pilar Layanan" } as Bilingual },
+  stat2: { value: "6", label: { en: "Step QA Workflow", id: "Langkah Alur QA" } as Bilingual },
+  stat3: { value: "SEA", label: { en: "Native Context", id: "Konteks Lokal" } as Bilingual },
+  image: "/assets/about/about.png",
 };
 
 /* ------------------------------------------------------------------ */
@@ -70,6 +96,7 @@ export const servicePillars: {
   icon: typeof Gauge;
   title: Bilingual;
   description: Bilingual;
+  image?: string;
 }[] = [
   {
     icon: Gauge,
@@ -81,6 +108,7 @@ export const servicePillars: {
       en: "LLM evaluation, RLHF, preference scoring, and hallucination review for production-grade model reliability.",
       id: "Evaluasi LLM, RLHF, penilaian preferensi, dan tinjauan halusinasi untuk keandalan model tingkat produksi.",
     },
+    image: "/assets/our services/Quality Assurance & Training.jpeg",
   },
   {
     icon: ScanSearch,
@@ -92,6 +120,7 @@ export const servicePillars: {
       en: "Multimodal vision and text labeling, search relevance, ranking, data cleaning, and deduplication.",
       id: "Pelabelan visual dan teks multimodal, relevansi pencarian, pemeringkatan, pembersihan data, dan deduplikasi.",
     },
+    image: "/assets/our services/ANNOTATION & SEARCH REFINEMENT.jpeg",
   },
   {
     icon: BarChart3,
@@ -103,6 +132,7 @@ export const servicePillars: {
       en: "Workflow process mapping, data quality audits, and precise requirements documentation.",
       id: "Pemetaan proses kerja, audit kualitas data, dan dokumentasi kebutuhan yang presisi.",
     },
+    image: "/assets/our services/Data and System analysis.png",
   },
   {
     icon: ClipboardList,
@@ -114,6 +144,7 @@ export const servicePillars: {
       en: "SOP design, workforce operations, and transparent client delivery reporting.",
       id: "Perancangan SOP, operasional tenaga kerja, dan pelaporan pengiriman klien yang transparan.",
     },
+    image: "/assets/our services/Technical Project & Ops Management.png",
   },
   {
     icon: Database,
@@ -125,6 +156,7 @@ export const servicePillars: {
       en: "Custom dataset curation across audio, image, and text — with defined train/test splits.",
       id: "Kurasi dataset khusus untuk audio, gambar, dan teks — lengkap dengan pembagian train/test yang terdefinisi.",
     },
+    // No image for pillar 5 — uses icon-only treatment
   },
 ];
 
@@ -145,6 +177,7 @@ export const capabilityTabs: {
   label: Bilingual;
   heading: Bilingual;
   items: Bilingual[];
+  image: string;
 }[] = [
   {
     id: "vision",
@@ -171,6 +204,7 @@ export const capabilityTabs: {
         id: "Tinjauan moderasi konten visual",
       },
     ],
+    image: "/assets/capabilities/VISION — VEHICLE & PEOPLE LABELLING.png",
   },
   {
     id: "language",
@@ -197,6 +231,7 @@ export const capabilityTabs: {
         id: "Anotasi teks, penandaan entitas, dan klasifikasi intent",
       },
     ],
+    image: "/assets/capabilities/LANGUAGE & SEARCH.jpeg",
   },
   {
     id: "documents",
@@ -223,6 +258,7 @@ export const capabilityTabs: {
         id: "Pelabelan kualitas audio/teks dalam skala besar",
       },
     ],
+    image: "/assets/capabilities/DOCUMENTS & MEDIA.png",
   },
   {
     id: "systems",
@@ -249,6 +285,42 @@ export const capabilityTabs: {
         id: "Perancangan SOP & dashboard pengiriman klien",
       },
     ],
+    image: "/assets/capabilities/DATA & SYSTEMS.png",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Regional Operations                                                */
+/* ------------------------------------------------------------------ */
+
+export const regionalOpsHeader = {
+  eyebrow: { en: "Regional Operations", id: "Operasional Regional" } as Bilingual,
+  heading: {
+    en: "Real work, real context.",
+    id: "Pekerjaan nyata, konteks nyata.",
+  } as Bilingual,
+  description: {
+    en: "Our teams operate across diverse data environments — from discovery and research to logistics and document quality assurance.",
+    id: "Tim kami beroperasi di berbagai lingkungan data — dari penemuan dan riset hingga logistik dan penjaminan kualitas dokumen.",
+  } as Bilingual,
+};
+
+export const regionalOpsImages = [
+  {
+    src: "/assets/regional operations/DISCOVERY : RESEARCH.png",
+    caption: { en: "Discovery & Research", id: "Penemuan & Riset" } as Bilingual,
+  },
+  {
+    src: "/assets/regional operations/DATA REVIEW.png",
+    caption: { en: "Data Review", id: "Tinjauan Data" } as Bilingual,
+  },
+  {
+    src: "/assets/regional operations/DOCUMENT QUALITY.png",
+    caption: { en: "Document Quality", id: "Kualitas Dokumen" } as Bilingual,
+  },
+  {
+    src: "/assets/regional operations/LOGISTICS.png",
+    caption: { en: "Logistics", id: "Logistik" } as Bilingual,
   },
 ];
 
@@ -263,6 +335,8 @@ export const workflowHeader = {
     id: "Alur kerja enam langkah yang disiplin.",
   } as Bilingual,
 };
+
+export const workflowBg = "/assets/workflow section bg/discover.png";
 
 export const workflowSteps: {
   number: string;
@@ -400,6 +474,24 @@ export const engagementModels: {
 ];
 
 /* ------------------------------------------------------------------ */
+/*  CTA Banner                                                          */
+/* ------------------------------------------------------------------ */
+
+export const ctaBanner = {
+  eyebrow: { en: "Get Started", id: "Mulai Sekarang" } as Bilingual,
+  heading: {
+    en: "Let's build the data foundation your AI deserves.",
+    id: "Mari bangun fondasi data yang layak untuk AI Anda.",
+  } as Bilingual,
+  subhead: {
+    en: "Deploy a Pilot Sprint within days. No long-term commitment required.",
+    id: "Jalankan Pilot Sprint dalam hitungan hari. Tanpa komitmen jangka panjang.",
+  } as Bilingual,
+  cta: { en: "Request Pilot Sprint", id: "Ajukan Pilot Sprint" } as Bilingual,
+  image: "/assets/CTA/CTA BG.png",
+};
+
+/* ------------------------------------------------------------------ */
 /*  Footer                                                              */
 /* ------------------------------------------------------------------ */
 
@@ -421,13 +513,6 @@ export const footer = {
     en: "All rights reserved.",
     id: "Seluruh hak dilindungi.",
   } as Bilingual,
+  logo: "/assets/Logo/DFG logo.png",
+  branding: "/assets/Logo/DFG branding.png",
 };
-
-/* ------------------------------------------------------------------ */
-/*  Navbar                                                              */
-/* ------------------------------------------------------------------ */
-
-export const navCta = {
-  en: "Request Pilot",
-  id: "Ajukan Pilot",
-} as Bilingual;
