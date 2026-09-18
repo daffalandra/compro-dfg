@@ -1,6 +1,6 @@
 import About from "./components/About";
 import CapabilityTabs from "./components/CapabilityTabs";
-import CtaBanner from "./components/CtaBanner";
+// import CtaBanner from "./components/CtaBanner"; // hidden until Request Pilot is ready
 import EngagementModels from "./components/EngagementModels";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
@@ -21,7 +21,7 @@ function App() {
         <RegionalOperations />
         <OperatingWorkflow />
         <EngagementModels />
-        <CtaBanner />
+        {/* <CtaBanner /> hidden until Request Pilot is ready */}
       </main>
       <Footer />
     </div>

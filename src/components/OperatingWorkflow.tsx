@@ -44,7 +44,7 @@ export default function OperatingWorkflow() {
         <div className="absolute inset-0 bg-white/88" />
       </div>
 
-      <div className="mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.98 }}

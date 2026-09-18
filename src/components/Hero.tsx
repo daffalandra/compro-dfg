@@ -121,7 +121,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.65, ease: easeApple }}
             className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:items-start"
           >
-            <motion.a
+            {/* Request Pilot Sprint — hidden until ready */}
+            {/* <motion.a
               href="#contact"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
@@ -129,7 +130,7 @@ export default function Hero() {
               className="rounded-full bg-zinc-900 px-7 py-3 text-sm font-medium text-white hover:bg-zinc-800"
             >
               {pick(lang, hero.ctaPrimary)}
-            </motion.a>
+            </motion.a> */}
             <a
               href="#capabilities"
               className="group inline-flex items-center gap-1.5 px-2 py-3 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
