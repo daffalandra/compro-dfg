@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { footer, navCta, navLinks } from "../data/content";
+import { footer, navLinks } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 
@@ -21,10 +21,8 @@ export default function Navbar() {
   const { scrollY } = useScroll();
   const rawOpacity = useTransform(scrollY, [0, 80], [0, 1]);
   const bgOpacity = useSpring(rawOpacity, { stiffness: 300, damping: 40 });
-  const [scrolled, setScrolled] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 8);
+  useMotionValueEvent(scrollY, "change", (_latest) => {
+    // retained for potential future use
   });
 
   return (
@@ -50,18 +48,8 @@ export default function Navbar() {
           <img
             src={footer.logo}
             alt="DFG logo"
-            className="h-8 w-8 object-contain"
+            className="h-16 w-16   object-contain"
           />
-          <span
-            className={`text-lg font-semibold tracking-tight transition-colors duration-300 ${
-              scrolled ? "text-zinc-900" : "text-zinc-900"
-            }`}
-          >
-            DFG
-          </span>
-          <span className="hidden text-xs text-zinc-400 sm:inline">
-            Data Fine &amp; Good
-          </span>
         </motion.a>
 
         {/* Desktop links */}
@@ -80,12 +68,6 @@ export default function Navbar() {
         {/* Desktop right controls */}
         <div className="hidden items-center gap-4 md:flex">
           <LanguageToggle layoutId="active-lang-pill-desktop" />
-          <a
-            href="#contact"
-            className="rounded-full bg-zinc-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
-          >
-            {pick(lang, navCta)}
-          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -130,13 +112,13 @@ export default function Navbar() {
                 </span>
                 <LanguageToggle layoutId="active-lang-pill-mobile" />
               </div>
-              <a
+              {/* <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 rounded-full bg-zinc-900 px-5 py-2.5 text-center text-sm font-medium text-white"
               >
                 {pick(lang, navCta)}
-              </a>
+              </a> */}
             </div>
           </motion.div>
         )}

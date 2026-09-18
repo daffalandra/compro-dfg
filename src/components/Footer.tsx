@@ -18,14 +18,14 @@ export default function Footer() {
                 src={footer.logo}
                 alt="DFG logo"
                 loading="lazy"
-                className="h-9 w-9 object-contain brightness-0 invert"
+                className="h-9 w-9 object-contain"
               />
-              <img
+              {/* <img
                 src={footer.branding}
                 alt="DFG — Data Fine & Good"
                 loading="lazy"
-                className="h-6 object-contain brightness-0 invert"
-              />
+                className="h-6 object-contain"
+              /> */}
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-zinc-500">
               {pick(lang, footer.blurb)}
