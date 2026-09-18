@@ -97,11 +97,11 @@ export default function Footer() {
                     {pick(lang, footer.pricing)}
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#contact" className="text-sm text-zinc-400 transition-colors hover:text-white">
                     {pick(lang, footer.contact)}
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

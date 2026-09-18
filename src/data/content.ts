@@ -16,7 +16,7 @@ export const navLinks: { label: Bilingual; href: string }[] = [
   { label: { en: "Capabilities", id: "Kapabilitas" }, href: "#capabilities" },
   { label: { en: "Workflow", id: "Alur Kerja" }, href: "#workflow" },
   { label: { en: "Engagement", id: "Kerja Sama" }, href: "#engagement" },
-  { label: { en: "Contact", id: "Kontak" }, href: "#contact" },
+  // { label: { en: "Contact", id: "Kontak" }, href: "#contact" },
 ];
 
 export const navCta = {
