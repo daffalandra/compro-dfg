@@ -1,5 +1,6 @@
 import About from "./components/About";
 import CapabilityTabs from "./components/CapabilityTabs";
+import Contact from "./components/Contact";
 // import CtaBanner from "./components/CtaBanner"; // hidden until Request Pilot is ready
 import EngagementModels from "./components/EngagementModels";
 import Footer from "./components/Footer";
@@ -21,6 +22,7 @@ function App() {
         <RegionalOperations />
         <OperatingWorkflow />
         <EngagementModels />
+        <Contact />
         {/* <CtaBanner /> hidden until Request Pilot is ready */}
       </main>
       <Footer />
