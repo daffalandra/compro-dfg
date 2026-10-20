@@ -37,6 +37,8 @@ export default function OperatingWorkflow() {
           src={workflowBg}
           alt=""
           aria-hidden
+          width={1536}
+          height={1024}
           loading="lazy"
           className="h-full w-full object-cover"
         />

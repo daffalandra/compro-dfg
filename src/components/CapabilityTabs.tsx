@@ -1,16 +1,51 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { capabilitiesHeader, capabilityTabs } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
+import { easeApple, headerVariants, viewportOnce } from "../lib/motion";
 
 export default function CapabilityTabs() {
   const { lang } = useLanguage();
   const [activeId, setActiveId] = useState(capabilityTabs[0].id);
-  const activeTab =
-    capabilityTabs.find((tab) => tab.id === activeId) ?? capabilityTabs[0];
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const activeIndex = capabilityTabs.findIndex((tab) => tab.id === activeId);
+  const activeTab = capabilityTabs[activeIndex] ?? capabilityTabs[0];
+
+  const focusTab = (index: number) => {
+    const tab = capabilityTabs[index];
+    if (!tab) return;
+    setActiveId(tab.id);
+    tabRefs.current[tab.id]?.focus();
+  };
+
+  const handleKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    const lastIndex = capabilityTabs.length - 1;
+    switch (event.key) {
+      case "ArrowRight":
+        event.preventDefault();
+        focusTab(index === lastIndex ? 0 : index + 1);
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        focusTab(index === 0 ? lastIndex : index - 1);
+        break;
+      case "Home":
+        event.preventDefault();
+        focusTab(0);
+        break;
+      case "End":
+        event.preventDefault();
+        focusTab(lastIndex);
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <section
@@ -20,10 +55,10 @@ export default function CapabilityTabs() {
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: easeApple }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
           className="mb-16 max-w-2xl"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-accent-400">
@@ -35,14 +70,27 @@ export default function CapabilityTabs() {
         </motion.div>
 
         {/* Tab bar */}
-        <div className="mb-12 flex flex-wrap gap-2 border-b border-zinc-800 pb-1">
-          {capabilityTabs.map((tab) => {
+        <div
+          role="tablist"
+          aria-label={pick(lang, capabilitiesHeader.eyebrow)}
+          className="mb-12 flex flex-wrap gap-2 border-b border-zinc-800 pb-1"
+        >
+          {capabilityTabs.map((tab, index) => {
             const isActive = tab.id === activeId;
             return (
               <button
                 key={tab.id}
+                ref={(el) => {
+                  tabRefs.current[tab.id] = el;
+                }}
                 type="button"
+                role="tab"
+                id={`capability-tab-${tab.id}`}
+                aria-selected={isActive}
+                aria-controls="capability-panel"
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveId(tab.id)}
+                onKeyDown={(event) => handleKeyDown(event, index)}
                 className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${
                   isActive ? "text-white" : "text-zinc-500 hover:text-zinc-300"
                 }`}
@@ -61,7 +109,13 @@ export default function CapabilityTabs() {
         </div>
 
         {/* Tab panel */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
+        <div
+          role="tabpanel"
+          id="capability-panel"
+          aria-labelledby={`capability-tab-${activeTab.id}`}
+          tabIndex={0}
+          className="grid grid-cols-1 gap-10 focus:outline-none md:grid-cols-2 md:gap-16"
+        >
           {/* Left: feature list */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -103,9 +157,10 @@ export default function CapabilityTabs() {
               <img
                 src={activeTab.image}
                 alt={pick(lang, activeTab.label)}
+                width={1600}
+                height={1200}
                 loading="lazy"
-                className="h-full w-full object-cover"
-                style={{ aspectRatio: "4/3" }}
+                className="aspect-[4/3] h-full w-full object-cover"
               />
             </motion.div>
           </AnimatePresence>

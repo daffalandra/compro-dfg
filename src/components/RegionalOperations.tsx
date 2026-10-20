@@ -64,6 +64,8 @@ export default function RegionalOperations() {
                 <img
                   src={img.src}
                   alt={pick(lang, img.caption)}
+                  width={1448}
+                  height={1086}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />

@@ -17,6 +17,8 @@ export default function Footer() {
               <img
                 src={footer.logo}
                 alt="DFG logo"
+                width={1254}
+                height={1254}
                 loading="lazy"
                 className="h-9 w-9 object-contain"
               />
@@ -48,15 +50,23 @@ export default function Footer() {
             <div className="mt-6 flex items-center gap-4">
               <a
                 href="#"
-                aria-label="LinkedIn"
-                className="text-zinc-500 transition-colors hover:text-white"
+                aria-label="LinkedIn (coming soon)"
+                aria-disabled="true"
+                tabIndex={-1}
+                onClick={(event) => event.preventDefault()}
+                title="Coming soon"
+                className="cursor-not-allowed text-zinc-600 opacity-50"
               >
                 <Share2 className="h-5 w-5" strokeWidth={1.5} />
               </a>
               <a
                 href="#"
-                aria-label="X (Twitter)"
-                className="text-zinc-500 transition-colors hover:text-white"
+                aria-label="X (Twitter) (coming soon)"
+                aria-disabled="true"
+                tabIndex={-1}
+                onClick={(event) => event.preventDefault()}
+                title="Coming soon"
+                className="cursor-not-allowed text-zinc-600 opacity-50"
               >
                 <AtSign className="h-5 w-5" strokeWidth={1.5} />
               </a>
@@ -88,7 +98,7 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 <li>
-                  <a href="#top" className="text-sm text-zinc-400 transition-colors hover:text-white">
+                  <a href="#about" className="text-sm text-zinc-400 transition-colors hover:text-white">
                     {pick(lang, footer.about)}
                   </a>
                 </li>
@@ -97,11 +107,11 @@ export default function Footer() {
                     {pick(lang, footer.pricing)}
                   </a>
                 </li>
-                {/* <li>
+                <li>
                   <a href="#contact" className="text-sm text-zinc-400 transition-colors hover:text-white">
                     {pick(lang, footer.contact)}
                   </a>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>

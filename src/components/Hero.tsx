@@ -155,6 +155,8 @@ export default function Hero() {
             <img
               src={hero.image}
               alt="DFG data operations team at work"
+              width={1402}
+              height={1122}
               loading="eager"
               className="h-full w-full object-cover"
             />

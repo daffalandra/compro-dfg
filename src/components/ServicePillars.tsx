@@ -68,6 +68,8 @@ export default function ServicePillars() {
                     <img
                       src={pillar.image}
                       alt={pick(lang, pillar.title)}
+                      width={1600}
+                      height={900}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />

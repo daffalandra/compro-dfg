@@ -16,6 +16,8 @@ export default function CtaBanner() {
           src={ctaBanner.image}
           alt=""
           aria-hidden
+          width={2345}
+          height={670}
           loading="lazy"
           className="h-full w-full object-cover"
         />

@@ -1,13 +1,12 @@
 import {
   AnimatePresence,
   motion,
-  useMotionValueEvent,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { footer, navLinks } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
@@ -17,13 +16,37 @@ const easeApple = [0.16, 1, 0.3, 1] as const;
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { lang } = useLanguage();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const { scrollY } = useScroll();
   const rawOpacity = useTransform(scrollY, [0, 80], [0, 1]);
   const bgOpacity = useSpring(rawOpacity, { stiffness: 300, damping: 40 });
-  useMotionValueEvent(scrollY, "change", (_latest) => {
-    // retained for potential future use
-  });
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (
+        menuRef.current?.contains(target) ||
+        buttonRef.current?.contains(target)
+      ) {
+        return;
+      }
+      setMobileOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handlePointerDown);
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="fixed top-0 z-50 w-full">
@@ -48,7 +71,9 @@ export default function Navbar() {
           <img
             src={footer.logo}
             alt="DFG logo"
-            className="h-16 w-16   object-contain"
+            width={1254}
+            height={1254}
+            className="h-16 w-16 object-contain"
           />
         </motion.a>
 
@@ -72,8 +97,11 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
+          ref={buttonRef}
           type="button"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
           className="text-zinc-700 md:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
@@ -89,6 +117,8 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            ref={menuRef}
+            id="mobile-menu"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

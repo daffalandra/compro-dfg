@@ -30,18 +30,18 @@ export default function About() {
             </p>
 
             {/* Stats row */}
-            <div className="mt-10 grid grid-cols-3 gap-6 border-t border-zinc-100 pt-8">
+            <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-zinc-100 pt-8">
               {[about.stat1, about.stat2, about.stat3].map((stat) => (
-                <div key={stat.value}>
-                  <p className="text-3xl font-semibold tracking-tight text-zinc-900">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-xs leading-snug text-zinc-500">
+                <div key={stat.value} className="flex flex-col-reverse">
+                  <dt className="mt-1 text-xs leading-snug text-zinc-500">
                     {pick(lang, stat.label)}
-                  </p>
+                  </dt>
+                  <dd className="text-3xl font-semibold tracking-tight text-zinc-900">
+                    {stat.value}
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </motion.div>
 
           {/* Right: about image */}
@@ -56,6 +56,8 @@ export default function About() {
               <img
                 src={about.image}
                 alt="DFG team at work"
+                width={1536}
+                height={1024}
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
