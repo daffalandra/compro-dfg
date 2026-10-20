@@ -32,15 +32,15 @@ export default function CtaBanner() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: easeApple }}
         >
-          <span className="inline-block rounded-full border border-white/20 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-white/70">
+          <span className="inline-block rounded-full border border-white/20 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-black/70">
             {pick(lang, ctaBanner.eyebrow)}
           </span>
 
-          <h2 className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl">
             {pick(lang, ctaBanner.heading)}
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+          <p className="mx-auto mt-6 max-w-xl text-lg text-black/70 leading-relaxed">
             {pick(lang, ctaBanner.subhead)}
           </p>
 
