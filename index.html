@@ -10,6 +10,14 @@
       content="DFG (Data Fine & Good) — AI data operations, evaluation, and quality infrastructure for Southeast Asia. Fine in detail, Good in use."
     />
     <title>DFG — Data Fine & Good</title>
+    <script>
+      try {
+        var storedLang = localStorage.getItem("dfg-lang");
+        if (storedLang === "en" || storedLang === "id") {
+          document.documentElement.lang = storedLang;
+        }
+      } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

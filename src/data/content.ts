@@ -4,6 +4,7 @@ import {
   Database,
   Gauge,
   ScanSearch,
+  type LucideIcon,
 } from "lucide-react";
 import type { Bilingual } from "../i18n/LanguageContext";
 
@@ -93,12 +94,14 @@ export const servicePillarsHeader = {
 };
 
 export const servicePillars: {
-  icon: typeof Gauge;
+  id: string;
+  icon: LucideIcon;
   title: Bilingual;
   description: Bilingual;
   image?: string;
 }[] = [
   {
+    id: "ai-quality",
     icon: Gauge,
     title: {
       en: "AI Quality Assurance & Training",
@@ -111,6 +114,7 @@ export const servicePillars: {
     image: "/assets/our services/Quality Assurance & Training.jpeg",
   },
   {
+    id: "annotation-search",
     icon: ScanSearch,
     title: {
       en: "Annotation & Search Refinement",
@@ -123,6 +127,7 @@ export const servicePillars: {
     image: "/assets/our services/ANNOTATION & SEARCH REFINEMENT.jpeg",
   },
   {
+    id: "data-systems-analysis",
     icon: BarChart3,
     title: {
       en: "Data & Systems Analysis",
@@ -135,6 +140,7 @@ export const servicePillars: {
     image: "/assets/our services/Data and System analysis.png",
   },
   {
+    id: "technical-ops",
     icon: ClipboardList,
     title: {
       en: "Technical Project & Ops Management",
@@ -147,6 +153,7 @@ export const servicePillars: {
     image: "/assets/our services/Technical Project & Ops Management.png",
   },
   {
+    id: "data-collection",
     icon: Database,
     title: {
       en: "Data Collection & Dataset Development",
@@ -305,20 +312,28 @@ export const regionalOpsHeader = {
   } as Bilingual,
 };
 
-export const regionalOpsImages = [
+export const regionalOpsImages: {
+  id: string;
+  src: string;
+  caption: Bilingual;
+}[] = [
   {
+    id: "discovery-research",
     src: "/assets/regional operations/DISCOVERY : RESEARCH.png",
     caption: { en: "Discovery & Research", id: "Penemuan & Riset" } as Bilingual,
   },
   {
+    id: "data-review",
     src: "/assets/regional operations/DATA REVIEW.png",
     caption: { en: "Data Review", id: "Tinjauan Data" } as Bilingual,
   },
   {
+    id: "document-quality",
     src: "/assets/regional operations/DOCUMENT QUALITY.png",
     caption: { en: "Document Quality", id: "Kualitas Dokumen" } as Bilingual,
   },
   {
+    id: "logistics",
     src: "/assets/regional operations/LOGISTICS.png",
     caption: { en: "Logistics", id: "Logistik" } as Bilingual,
   },
@@ -339,11 +354,13 @@ export const workflowHeader = {
 export const workflowBg = "/assets/workflow section bg/discover.png";
 
 export const workflowSteps: {
+  id: string;
   number: string;
   title: Bilingual;
   description: Bilingual;
 }[] = [
   {
+    id: "define",
     number: "01",
     title: { en: "Define", id: "Definisikan" },
     description: {
@@ -352,6 +369,7 @@ export const workflowSteps: {
     },
   },
   {
+    id: "calibrate",
     number: "02",
     title: { en: "Calibrate", id: "Kalibrasi" },
     description: {
@@ -360,6 +378,7 @@ export const workflowSteps: {
     },
   },
   {
+    id: "produce",
     number: "03",
     title: { en: "Produce", id: "Produksi" },
     description: {
@@ -368,6 +387,7 @@ export const workflowSteps: {
     },
   },
   {
+    id: "review",
     number: "04",
     title: { en: "Review", id: "Tinjau" },
     description: {
@@ -376,6 +396,7 @@ export const workflowSteps: {
     },
   },
   {
+    id: "measure",
     number: "05",
     title: { en: "Measure", id: "Ukur" },
     description: {
@@ -384,6 +405,7 @@ export const workflowSteps: {
     },
   },
   {
+    id: "deliver",
     number: "06",
     title: { en: "Deliver", id: "Kirim" },
     description: {
@@ -407,6 +429,7 @@ export const engagementHeader = {
 };
 
 export const engagementModels: {
+  id: string;
   title: Bilingual;
   volume: Bilingual;
   description: Bilingual;
@@ -415,6 +438,7 @@ export const engagementModels: {
   tag?: Bilingual;
 }[] = [
   {
+    id: "pilot-sprint",
     title: { en: "Pilot Sprint", id: "Pilot Sprint" },
     volume: { en: "100 – 1,000 tasks", id: "100 – 1.000 tugas" },
     description: {
@@ -429,6 +453,7 @@ export const engagementModels: {
     emphasized: false,
   },
   {
+    id: "project-based",
     title: { en: "Project-Based", id: "Berbasis Proyek" },
     volume: { en: "1,000 – 50,000 tasks", id: "1.000 – 50.000 tugas" },
     description: {
@@ -443,6 +468,7 @@ export const engagementModels: {
     emphasized: false,
   },
   {
+    id: "managed-retainer",
     title: { en: "Managed Retainer", id: "Retainer Terkelola" },
     volume: { en: "Ongoing capacity", id: "Kapasitas berkelanjutan" },
     description: {
@@ -458,6 +484,7 @@ export const engagementModels: {
     tag: { en: "Most flexible", id: "Paling fleksibel" },
   },
   {
+    id: "dedicated-pod",
     title: { en: "Dedicated Pod", id: "Dedicated Pod" },
     volume: { en: "50,000+ tasks", id: "50.000+ tugas" },
     description: {
@@ -484,11 +511,45 @@ export const ctaBanner = {
     id: "Mari bangun fondasi data yang layak untuk AI Anda.",
   } as Bilingual,
   subhead: {
-    en: "Deploy a Pilot Sprint within days. No long-term commitment required.",
-    id: "Jalankan Pilot Sprint dalam hitungan hari. Tanpa komitmen jangka panjang.",
+    en: "Tell us what you're building. Our team will help you scope the right engagement.",
+    id: "Ceritakan apa yang sedang Anda bangun. Tim kami akan membantu menentukan kerja sama yang tepat.",
   } as Bilingual,
-  cta: { en: "Request Pilot Sprint", id: "Ajukan Pilot Sprint" } as Bilingual,
+  cta: { en: "Get in touch", id: "Hubungi Kami" } as Bilingual,
   image: "/assets/CTA/CTA BG.png",
+};
+
+/* ------------------------------------------------------------------ */
+/*  Contact (static placeholder — no submission backend yet)            */
+/* ------------------------------------------------------------------ */
+
+export const contact = {
+  eyebrow: { en: "Contact", id: "Kontak" } as Bilingual,
+  heading: {
+    en: "Tell us what you're working on.",
+    id: "Ceritakan apa yang sedang Anda kerjakan.",
+  } as Bilingual,
+  description: {
+    en: "Share a few details and our team will follow up within two business days.",
+    id: "Bagikan sedikit detail dan tim kami akan menghubungi Anda dalam dua hari kerja.",
+  } as Bilingual,
+  nameLabel: { en: "Name", id: "Nama" } as Bilingual,
+  namePlaceholder: { en: "Your name", id: "Nama Anda" } as Bilingual,
+  companyLabel: { en: "Company email", id: "Email perusahaan" } as Bilingual,
+  companyPlaceholder: {
+    en: "you@company.com",
+    id: "anda@perusahaan.com",
+  } as Bilingual,
+  messageLabel: { en: "What are you working on?", id: "Apa yang sedang Anda kerjakan?" } as Bilingual,
+  messagePlaceholder: {
+    en: "A short description of your data or evaluation needs.",
+    id: "Deskripsi singkat kebutuhan data atau evaluasi Anda.",
+  } as Bilingual,
+  submitLabel: { en: "Send message", id: "Kirim pesan" } as Bilingual,
+  disabledNote: {
+    en: "Online submissions are coming soon. In the meantime, email us at",
+    id: "Pengiriman online segera hadir. Sementara itu, kirim email ke",
+  } as Bilingual,
+  email: "hello@datafineandgood.com",
 };
 
 /* ------------------------------------------------------------------ */
