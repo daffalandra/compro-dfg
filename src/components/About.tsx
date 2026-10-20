@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { about } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
+import { easeApple } from "../lib/motion";
 
 export default function About() {
   const { lang } = useLanguage();

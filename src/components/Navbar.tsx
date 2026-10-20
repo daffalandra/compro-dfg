@@ -10,8 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { footer, navLinks } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
+import { easeApple } from "../lib/motion";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

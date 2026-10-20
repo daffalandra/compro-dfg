@@ -3,8 +3,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { useRef } from "react";
 import { hero } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
+import { easeApple } from "../lib/motion";
 
 function AnimatedHeadline({
   line1,

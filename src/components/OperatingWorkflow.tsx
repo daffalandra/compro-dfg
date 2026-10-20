@@ -1,22 +1,13 @@
 import { motion } from "framer-motion";
 import { workflowBg, workflowHeader, workflowSteps } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: easeApple },
-  },
-};
+import {
+  containerVariants,
+  easeApple,
+  headerVariants,
+  itemVariants,
+  viewportOnce,
+} from "../lib/motion";
 
 const lineVariants = {
   hidden: { scaleX: 0 },
@@ -49,10 +40,10 @@ export default function OperatingWorkflow() {
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: easeApple }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
           className="mb-16 max-w-2xl"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
@@ -68,7 +59,7 @@ export default function OperatingWorkflow() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={viewportOnce}
           className="relative grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6"
         >
           {/* Animated connecting line — desktop only */}
@@ -81,7 +72,7 @@ export default function OperatingWorkflow() {
 
           {workflowSteps.map((step) => (
             <motion.div
-              key={pick(lang, step.title)}
+              key={step.id}
               variants={itemVariants}
               className="relative"
             >

@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ctaBanner } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
+import { easeApple } from "../lib/motion";
 
 export default function CtaBanner() {
   const { lang } = useLanguage();

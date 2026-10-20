@@ -1,36 +1,25 @@
 import { motion } from "framer-motion";
 import { regionalOpsHeader, regionalOpsImages } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.97 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.7, ease: easeApple },
-  },
-};
+import {
+  containerVariants,
+  headerVariants,
+  itemVariants,
+  viewportOnce,
+} from "../lib/motion";
 
 export default function RegionalOperations() {
   const { lang } = useLanguage();
 
   return (
-    <section className="bg-zinc-50 px-6 py-32 md:py-40">
+    <section id="regional-operations" className="bg-zinc-50 px-6 py-32 md:py-40">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: easeApple }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
           className="mb-16 max-w-2xl"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
@@ -49,12 +38,12 @@ export default function RegionalOperations() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={viewportOnce}
           className="grid grid-cols-1 gap-5 sm:grid-cols-2"
         >
           {regionalOpsImages.map((img) => (
             <motion.div
-              key={img.src}
+              key={img.id}
               variants={itemVariants}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}

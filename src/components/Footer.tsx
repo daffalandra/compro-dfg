@@ -2,9 +2,10 @@ import { AtSign, Mail, MapPin, Share2 } from "lucide-react";
 import { footer, navLinks } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function Footer() {
   const { lang } = useLanguage();
-  const year = new Date().getFullYear();
 
   return (
     <footer id="footer" className="bg-black px-6 pb-10 pt-20 text-zinc-400">
@@ -120,7 +121,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-3 pt-8 sm:flex-row">
           <p className="text-xs text-zinc-600">
-            &copy; {year} DFG (Data Fine &amp; Good). {pick(lang, footer.rights)}
+            &copy; {CURRENT_YEAR} DFG (Data Fine &amp; Good). {pick(lang, footer.rights)}
           </p>
           <p className="text-xs text-zinc-600 italic">Fine in detail, Good in use.</p>
         </div>

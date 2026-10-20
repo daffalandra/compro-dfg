@@ -1,23 +1,12 @@
 import { motion } from "framer-motion";
 import { servicePillars, servicePillarsHeader } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
-
-const easeApple = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.97 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.65, ease: easeApple },
-  },
-};
+import {
+  containerVariants,
+  headerVariants,
+  itemVariants,
+  viewportOnce,
+} from "../lib/motion";
 
 export default function ServicePillars() {
   const { lang } = useLanguage();
@@ -27,10 +16,10 @@ export default function ServicePillars() {
       <div className="mx-auto max-w-6xl">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: easeApple }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
           className="mb-16 max-w-2xl"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
@@ -49,14 +38,14 @@ export default function ServicePillars() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={viewportOnce}
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {servicePillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <motion.div
-                key={pick(lang, pillar.title)}
+                key={pillar.id}
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}

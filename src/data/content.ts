@@ -20,11 +20,6 @@ export const navLinks: { label: Bilingual; href: string }[] = [
   { label: { en: "Contact", id: "Kontak" }, href: "#contact" },
 ];
 
-export const navCta = {
-  en: "Request Pilot",
-  id: "Ajukan Pilot",
-} as Bilingual;
-
 export const a11y = {
   skipToContent: {
     en: "Skip to main content",

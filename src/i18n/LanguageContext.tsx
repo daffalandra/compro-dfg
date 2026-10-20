@@ -26,7 +26,6 @@ function detectInitialLang(): Lang {
 interface LanguageContextValue {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  toggleLang: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(
@@ -42,12 +41,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [lang]);
 
   const setLang = (next: Lang) => setLangState(next);
-  const toggleLang = () => setLangState((prev) => (prev === "en" ? "id" : "en"));
 
-  const value = useMemo(
-    () => ({ lang, setLang, toggleLang }),
-    [lang],
-  );
+  const value = useMemo(() => ({ lang, setLang }), [lang]);
 
   return (
     <LanguageContext.Provider value={value}>
