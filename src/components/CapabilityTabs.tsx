@@ -91,14 +91,14 @@ export default function CapabilityTabs() {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveId(tab.id)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
-                className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${
+                className={`relative cursor-pointer rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${
                   isActive ? "text-white" : "text-zinc-500 hover:text-zinc-300"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="active-capability-pill"
-                    className="absolute inset-0 rounded-full bg-zinc-800"
+                    className="absolute inset-0 rounded-full bg-zinc-800 ring-1 ring-inset ring-white/10"
                     transition={{ duration: 0.35, ease: easeApple }}
                   />
                 )}

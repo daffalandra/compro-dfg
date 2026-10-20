@@ -35,7 +35,7 @@ export default function About() {
                   <dt className="mt-1 text-xs leading-snug text-zinc-500">
                     {pick(lang, stat.label)}
                   </dt>
-                  <dd className="text-3xl font-semibold tracking-tight text-zinc-900">
+                  <dd className="text-3xl font-semibold tracking-tight text-zinc-900 md:text-4xl">
                     {stat.value}
                   </dd>
                 </div>

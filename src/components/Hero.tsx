@@ -1,6 +1,13 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { hero } from "../data/content";
 import { pick, useLanguage } from "../i18n/LanguageContext";
 import { easeApple } from "../lib/motion";
@@ -59,6 +66,8 @@ function AnimatedHeadline({
 export default function Hero() {
   const { lang } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const [showScrollCue, setShowScrollCue] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -70,6 +79,11 @@ export default function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
   const meshY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    const next = value < 0.05;
+    setShowScrollCue((prev) => (prev === next ? prev : next));
+  });
 
   return (
     <section
@@ -95,7 +109,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: easeApple }}
-            className="mb-6 inline-flex items-center rounded-full border border-zinc-200 px-4 py-1 text-xs text-zinc-500"
+            className="mb-6 inline-flex items-center rounded-full border border-zinc-200/80 bg-white/60 px-4 py-1.5 text-xs font-medium text-zinc-600 backdrop-blur-sm"
           >
             {pick(lang, hero.badge)}
           </motion.div>
@@ -125,13 +139,13 @@ export default function Hero() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center rounded-full bg-accent-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-accent-700"
+              className="inline-flex cursor-pointer items-center justify-center rounded-full bg-accent-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-accent-700"
             >
               {pick(lang, hero.ctaPrimary)}
             </motion.a>
             <a
               href="#capabilities"
-              className="group inline-flex items-center gap-1.5 px-2 py-3 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+              className="group inline-flex cursor-pointer items-center gap-1.5 px-2 py-3 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
             >
               {pick(lang, hero.ctaSecondary)}
               <ArrowRight
@@ -166,20 +180,29 @@ export default function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
-        aria-hidden
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown className="h-5 w-5 text-zinc-300" strokeWidth={1.5} />
-        </motion.div>
-      </motion.div>
+      <AnimatePresence>
+        {showScrollCue && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
+            aria-hidden
+          >
+            <motion.div
+              animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : { duration: 1.8, repeat: Infinity, ease: "easeInOut" }
+              }
+            >
+              <ChevronDown className="h-5 w-5 text-zinc-300" strokeWidth={1.5} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

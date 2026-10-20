@@ -30,7 +30,7 @@ export default function LanguageToggle({
             type="button"
             aria-pressed={isActive}
             onClick={() => setLang(option.value)}
-            className={`relative z-10 rounded-full px-3 py-1.5 transition-colors duration-200 ${
+            className={`relative z-10 cursor-pointer rounded-full px-3 py-1.5 transition-colors duration-200 ${
               isActive ? "text-white" : "text-zinc-500 hover:text-zinc-800"
             }`}
           >

@@ -1,6 +1,7 @@
 import {
   AnimatePresence,
   motion,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -15,12 +16,39 @@ import { easeApple } from "../lib/motion";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { lang } = useLanguage();
+  const prefersReducedMotion = useReducedMotion();
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const { scrollY } = useScroll();
   const rawOpacity = useTransform(scrollY, [0, 80], [0, 1]);
   const bgOpacity = useSpring(rawOpacity, { stiffness: 300, damping: 40 });
+  const [activeHref, setActiveHref] = useState("");
+
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              a.boundingClientRect.top - b.boundingClientRect.top,
+          );
+        const current = visible[0];
+        if (current?.target.id) setActiveHref(`#${current.target.id}`);
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -52,7 +80,7 @@ export default function Navbar() {
       <motion.div
         aria-hidden
         style={{ opacity: bgOpacity }}
-        className="absolute inset-0 border-b border-zinc-200/60 bg-white/75 backdrop-blur-xl"
+        className="absolute inset-0 border-b border-zinc-200/60 bg-white/80 backdrop-blur-md"
       />
 
       <nav
@@ -65,7 +93,7 @@ export default function Navbar() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: easeApple }}
-          className="flex items-center gap-2.5"
+          className="flex cursor-pointer items-center gap-2.5"
         >
           <img
             src={footer.logo}
@@ -78,15 +106,29 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-zinc-600 transition-colors hover:text-zinc-900"
-            >
-              {pick(lang, link.label)}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeHref === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "true" : undefined}
+                className={`relative cursor-pointer py-2 text-sm transition-colors ${
+                  isActive
+                    ? "text-zinc-900"
+                    : "text-zinc-600 hover:text-zinc-900"
+                }`}
+              >
+                {pick(lang, link.label)}
+                <span
+                  aria-hidden
+                  className={`absolute inset-x-0 bottom-0 h-px origin-center bg-accent-600 transition-transform duration-200 ${
+                    isActive ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </a>
+            );
+          })}
         </div>
 
         {/* Desktop right controls */}
@@ -101,7 +143,7 @@ export default function Navbar() {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
-          className="text-zinc-700 md:hidden"
+          className="cursor-pointer text-zinc-700 md:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
           {mobileOpen ? (
@@ -121,7 +163,11 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: easeApple }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.25, ease: easeApple }
+            }
             className="relative overflow-hidden border-t border-zinc-200/60 bg-white/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
@@ -130,7 +176,12 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-2 py-2.5 text-sm text-zinc-700 hover:bg-zinc-50"
+                  aria-current={activeHref === link.href ? "true" : undefined}
+                  className={`cursor-pointer rounded-lg px-2 py-2.5 text-sm hover:bg-zinc-50 ${
+                    activeHref === link.href
+                      ? "bg-zinc-50 font-medium text-zinc-900"
+                      : "text-zinc-700"
+                  }`}
                 >
                   {pick(lang, link.label)}
                 </a>

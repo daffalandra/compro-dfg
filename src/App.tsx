@@ -1,16 +1,20 @@
+import { lazy, Suspense } from "react";
 import About from "./components/About";
 import CapabilityTabs from "./components/CapabilityTabs";
 import Contact from "./components/Contact";
-import CtaBanner from "./components/CtaBanner";
 import EngagementModels from "./components/EngagementModels";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import OperatingWorkflow from "./components/OperatingWorkflow";
-import RegionalOperations from "./components/RegionalOperations";
 import ServicePillars from "./components/ServicePillars";
 import { a11y } from "./data/content";
 import { pick, useLanguage } from "./i18n/LanguageContext";
+
+const RegionalOperations = lazy(
+  () => import("./components/RegionalOperations"),
+);
+const CtaBanner = lazy(() => import("./components/CtaBanner"));
 
 function App() {
   const { lang } = useLanguage();
@@ -29,10 +33,14 @@ function App() {
         <ServicePillars />
         <About />
         <CapabilityTabs />
-        <RegionalOperations />
+        <Suspense fallback={null}>
+          <RegionalOperations />
+        </Suspense>
         <OperatingWorkflow />
         <EngagementModels />
-        <CtaBanner />
+        <Suspense fallback={null}>
+          <CtaBanner />
+        </Suspense>
         <Contact />
       </main>
       <Footer />

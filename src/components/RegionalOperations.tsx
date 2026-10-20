@@ -47,7 +47,7 @@ export default function RegionalOperations() {
               variants={itemVariants}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="group relative overflow-hidden rounded-3xl bg-zinc-200 shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+              className="group relative overflow-hidden rounded-2xl border border-zinc-200/70 bg-zinc-200 shadow-sm"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img

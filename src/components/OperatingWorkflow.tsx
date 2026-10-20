@@ -67,7 +67,7 @@ export default function OperatingWorkflow() {
             variants={lineVariants}
             style={{ transformOrigin: "left" }}
             aria-hidden
-            className="pointer-events-none absolute top-6 hidden h-px w-full bg-zinc-300 lg:block"
+            className="pointer-events-none absolute top-6 hidden h-0 w-full border-t-2 border-dashed border-zinc-200 lg:block"
           />
 
           {workflowSteps.map((step) => (

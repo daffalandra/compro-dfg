@@ -49,7 +49,7 @@ export default function ServicePillars() {
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 bg-white transition-[border-color,box-shadow] duration-300 hover:border-zinc-300 hover:shadow-[0_24px_64px_rgba(0,0,0,0.07)]"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-zinc-300 hover:shadow-md"
               >
                 {/* Image — only for pillars that have one */}
                 {pillar.image ? (
@@ -73,7 +73,7 @@ export default function ServicePillars() {
                 )}
 
                 {/* Card body */}
-                <div className="flex flex-1 flex-col p-7">
+                <div className="flex flex-1 flex-col p-8">
                   <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 transition-colors duration-300 group-hover:bg-accent-50">
                     <Icon
                       className="h-4 w-4 text-zinc-700 transition-colors duration-300 group-hover:text-accent-600"

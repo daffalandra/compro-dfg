@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="mt-6 space-y-3 text-sm">
               <a
                 href="mailto:hello@datafineandgood.com"
-                className="flex items-center gap-2.5 text-zinc-400 transition-colors hover:text-white"
+                className="flex items-center gap-2.5 text-zinc-400 transition-colors hover:text-accent-400"
               >
                 <Mail className="h-4 w-4" strokeWidth={1.5} />
                 hello@datafineandgood.com
